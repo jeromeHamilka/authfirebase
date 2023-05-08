@@ -5,6 +5,8 @@ import '../../common/loading.dart';
 import '../../models/user.dart';
 import '../../services/authentication.dart';
 import '../../services/database.dart';
+import '../../services/images_uploads.dart';
+import '../../services/notification_service.dart';
 import 'user_list.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -14,6 +16,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    NotificationService.initialize();
     final user = Provider.of<AppUser?>(context);
     if (user == null) throw Exception("user not found");
     final database = DatabaseService(user.uid);
@@ -61,6 +64,7 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
         body: const UserList(),
+        //body: const ImageUploads(),
       ),
     );
   }

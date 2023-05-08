@@ -17,6 +17,10 @@ class DatabaseService {
     });
   }
 
+  Future<void> saveToken(String? token) async {
+    return await userCollection.doc(uid).update({'token': token});
+  }
+
   AppUserData _userFromSnapshot(
       DocumentSnapshot<Map<String, dynamic>> snapshot) {
     var data = snapshot.data();
